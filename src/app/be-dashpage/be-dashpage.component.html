@@ -1,0 +1,15 @@
+<div class="widget-container">
+    <div *ngFor="let w of widgets" 
+        class="widget" 
+        [ngClass]="{'hidden':isVisible(w.name)}"
+        [ngSwitch]="w.type"  
+        [ngStyle]="{'width.px':this.getSize(w.width), 'height.px':this.getSize(w.height), 'margin.px':grid_gutter, 'background-color':w.color}">
+        <div *ngSwitchCase="'map'" be-map [conf]="w" [map_id]="w.name" id="{{w.name}}" [ngStyle]="{'height.px':this.getSize(w.height)}" [center]="[44.4949, 11.3426]" [startzoom]="10"><div namedlayer [layer]="'osms'"></div></div>
+        <div *ngSwitchCase="'table'" be-table [conf]="w" style="width:100%;overflow:auto;"></div>
+        <div *ngSwitchCase="'card'" be-card [conf]="w"></div>
+        <div *ngSwitchCase="'chart'" be-chart [conf]="w"></div>
+        <div *ngSwitchCase="'list'" be-list [conf]="w" style="width:100%;overflow:auto;"></div>
+        <div *ngSwitchCase="'calendar'" be-calendar [conf]="w"></div>
+    </div>
+    <div style="width:100%; clear:both;"></div>
+</div>

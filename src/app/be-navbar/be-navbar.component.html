@@ -1,0 +1,29 @@
+<div class="container-fluid">
+  <!-- this part is hidden for xs screens -->
+  <div class="collapse navbar-collapse">
+   
+    <ul class="nav navbar-nav pull-xs-right" (click)="$event.preventDefault()">
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle dropdown-toggle-notifications"
+           id="notifications-dropdown-toggle" data-toggle="dropdown">
+                <span class="thumb-sm avatar pull-xs-left">
+                    <img class="img-circle" src="assets/images/people/a5.jpg" alt="...">
+                </span>
+          &nbsp;
+          Philip <strong>Smith</strong>&nbsp;
+                <span class="circle bg-warning fw-bold">
+                    13
+                </span>
+          <b class="caret"></b>
+        </a>
+        <!-- ready to use notifications dropdown. inspired by smartadmin template.
+                     consists of three components:
+                     notifications, messages, progress. leave or add what's important for you.
+                     uses Sing's ajax-load plugin for async content loading. See #load-notifications-btn -->
+        <div notifications class="dropdown-menu dropdown-menu-right animated animated-fast fadeInUp"
+          ></div>
+      </li>
+      
+    </ul>
+  </div>
+</div>

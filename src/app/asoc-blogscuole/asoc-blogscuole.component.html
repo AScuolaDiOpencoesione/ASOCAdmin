@@ -1,0 +1,103 @@
+<div class="conatiner">
+    <div class="row">
+        <div class="col-md-6">
+            <select class="form-control">
+                <option>Seleziona Anno</option>
+                <option *ngFor="let r of years" value="{{r.id}}">{{r.name}}</option>
+            </select>
+        </div>
+    </div>
+</div>
+
+<div be-map [height]="400" [noscroll]="true" [center]="[42.423, 14.282]" [startzoom]="5">
+    <div namedlayer [layer]="'osm'"></div>
+</div>
+
+<div class="container" style="padding-top:15px; padding-bottom:15px;">
+    <div class="row">
+        <div class="col-md-4">
+            <select class="form-control">
+                <option>Filtra per Regione</option>
+                <option *ngFor="let r of regions" value="{{r.id}}">{{r.name}}</option>
+            </select>
+        </div>
+        <div class="col-md-4">
+            <select class="form-control">
+                <option>Filtra per Provincia</option>
+                <option *ngFor="let r of provinces" value="{{r.id}}">{{r.name}}</option>
+            </select>
+        </div>
+        <div class="col-md-4">
+            <select class="form-control">
+                <option>Filtra per Città</option>
+                <option *ngFor="let r of cities" value="{{r.id}}">{{r.name}}</option>
+            </select>
+        </div>
+    </div>
+    
+    <div class="row">
+        <div class="col-md-4">
+            <select class="form-control">
+                <option>Filtra per Scuola</option>
+                <option *ngFor="let r of schools" value="{{r.id}}">{{r.name}}</option>
+            </select>
+        </div>
+        <div class="col-md-4">
+            <select class="form-control">
+                <option>Filtra per Report consegnato</option>
+                <option *ngFor="let r of sections" value="{{r.id}}">{{r.name}}</option>
+            </select>
+        </div>
+        <div class="col-md-4">
+            <select class="form-control">
+                <option>Filtra per Tema OpenCoesione</option>
+                <option *ngFor="let r of topics" value="{{r.id}}">{{r.name}}</option>
+            </select>
+        </div>
+    </div>
+</div>
+<div class="container">
+    <div class="row">
+        <div class="blog col-md-9">
+            <div class="row">
+                <div class="col-md-12"><h4>I team</h4></div>
+                <div class="col-md-3 col-lg-4 col-xs-12" *ngFor="let ts of teams">
+                    <div class="card" *ngIf="ts.details">
+                      <div class="card-block">
+                        <h4 class="card-title">{{ts.details.name}}</h4>
+                        <h6 class="card-subtitle text-muted">Tema OC: {{ts.application.topic[0].name}}</h6>
+                        <h6 class="card-subtitle text-muted">{{ts.school.name}}</h6>
+                        <h6 class="card-subtitle text-muted">{{ts.school.city}} ({{ts.school.prov?.lit}})</h6>
+                      </div>
+                      <img src="{{ts.details.logo}}" alt="Card image">
+                      <div class="card-block">
+                        <a href="#/blog/scuole/{{ts.section}}/{{ts.id}}" class="card-link">Vai al blog del team</a>
+                      </div>
+                    </div>
+                    
+                    <div class="card" *ngIf="!ts.details">
+                      <div class="card-block">
+                        <h4 class="card-title">{{ts.school.name}}</h4>
+                        <h6 class="card-subtitle text-muted">{{ts.school.region.name}}</h6>
+                        <h6 class="card-subtitle text-muted">{{ts.school.city}} ({{ts.school.prov?.lit}})</h6>
+                        <h6 class="card-subtitle text-muted">ID ASOC:{{ts.application.id}}</h6>
+                        
+                      </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="blog_sidebar col-md-3">
+            <div class="row">
+                <div class="col-md-12"><h4>Gli ultimi post</h4></div>
+                <div class="col-md-12" *ngFor="let report of reports">
+                    <div class="card">
+                        <div class="card-block">
+                            <a href="#/blog/scuole/{{report.section}}/{{report.auth.id}}/{{report.id}}">{{report.raw}}</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

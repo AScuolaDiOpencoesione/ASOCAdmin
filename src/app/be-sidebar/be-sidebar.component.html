@@ -1,0 +1,13 @@
+<div class="js-sidebar-content">
+  <header class="logo hidden-sm-down">
+    <a href="#/">ASOC ADMIN</a>
+  </header>
+  <div class="filters">
+    <div class="filter" *ngFor="let filter of filters">
+      {{filter.label}}: <select><option *ngFor="let opt of filter.options" value="{{opt.id}}">{{opt.name}}</option></select>
+    </div>
+  </div>
+  <ul class="sidebar-nav">
+    <li sidebar-tab *ngFor="let tab of tabs" [tab]="tab"></li>
+  </ul>
+</div>

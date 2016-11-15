@@ -1,0 +1,22 @@
+
+
+.sidebar{
+    width:329px;
+}
+.content-wrap{
+    margin-left: 330px;
+    position: absolute;
+    top:17px;
+    overflow: auto;
+    display: block;
+}
+
+#sidebar{
+    margin-top: -1px;
+    position: relative;
+    border-right: 1px solid #a0a0a0;
+}
+
+body{
+    font-family: 'Open Sans', sans-serif;
+}

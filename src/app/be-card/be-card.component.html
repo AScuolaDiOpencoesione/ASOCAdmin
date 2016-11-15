@@ -1,0 +1,23 @@
+<div class="widget-body clearfix" [ngClass]="{hidden:isHidden()}" [ngStyle]="{'background-color':conf.color}">
+    <div class="row">
+        <div class="col-xs-3">
+            <span class="widget-icon">
+                <i class="fa fa-fw fa-{{conf.icon}}"></i>
+            </span>
+        </div>
+        <div class="col-xs-9">
+            <h5 class="no-margin">{{conf.label}}</h5>
+            <p class="h2 no-margin fw-normal">{{conf.value}}</p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-6">
+            <h5 class="no-margin">{{conf.label1}}</h5>
+            <p class="value4">{{conf.value1}}</p>
+        </div>
+        <div class="col-xs-6">
+            <h5 class="no-margin">{{conf.label2}}</h5>
+            <p class="value4">{{conf.value2}}</p>
+        </div>
+    </div>
+</div>

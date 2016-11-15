@@ -1,0 +1,64 @@
+{
+    "title":"ASCOM Dashboard",
+    "has_sidebar_left":["title", "tabs"],
+    "has_sidebar_right":[],
+    "has_toolbar":["title", "searchbar", "spacer", ["profile"]],
+
+    "grid_unit":18,
+    "grid_gutter":3,
+
+    "datasources":[{
+        "name":"cedascom-becloud",
+        "type":"becloud",
+        "token":"1c1d02f0-ef0a-45d7-9291-9f00b0136497"
+    }],
+
+    "tabs":[{
+        "name":"Home",
+        "icon":"home",
+        "tabtype":"custom",
+        "components":[{
+            "name":"map",
+            "width":7,
+            "heigth":7,
+            "type":"map",
+            "datasource":"it.beinternet.anagrafica",
+            "mode":"geojson",
+            "filter":"bbox"
+        },{
+            "name":"contracts",
+            "width":5,
+            "height":7,
+            "type":"table",
+            "datasource":"it.beinternet.preventivo",
+            "limit":10
+        }]
+    },{
+        "name":"Anagrafica",
+        "icon":"user",
+        "tabtype":"admin",
+        "list_mode":"cards",
+        "list_view":"rubrica",
+        "detail_view":"profilo",
+        "detail_template":"profilo.html", /*aggiungere direttiva per fieldgroup*/
+        "datasource":"it.beinternet.anagrafica"
+    },{
+        "name":"Listini",
+        "icon":"list",
+        "tabtype":"admin",
+        "list_mode":"table",
+        "datasource":"it.beinternet.listino"
+    },{
+        "name":"Preventivi",
+        "icon":"file-o",
+        "tabtype":"admin",
+        "list_mode":"table",
+        "datasource":"it.beinternet.preventivo"
+    },{
+        "name":"Contratti",
+        "icon":"file-o",
+        "tabtype":"admin",
+        "list_mode":"table",
+        "datasource":"it.beinternet.contratto"
+    }]
+}

@@ -1,0 +1,4 @@
+<h2>{{conf.label}}</h2>
+<p-dataTable [value]="items" selectionMode="single" [ngStyle]="{'width.%':100}">
+    <p-column *ngFor="let col of cols" [field]="col.field" [header]="col.header"></p-column>
+</p-dataTable>

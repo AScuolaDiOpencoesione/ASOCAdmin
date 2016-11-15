@@ -1,0 +1,70 @@
+<div>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-2">
+                <h2>Filtri Team</h2>
+                <div>
+                    <select class="form-control" [(ngModel)]="f_years">
+                        <option>Filtra per Anno</option>
+                        <option *ngFor="let r of years" value="{{r.id}}">{{r.name}}</option>
+                    </select>
+                    <select class="form-control" [(ngModel)]="f_regions">
+                        <option>Filtra per Regione</option>
+                        <option *ngFor="let r of regions" value="{{r.id}}">{{r.name}}</option>
+                    </select>
+                    <select class="form-control" [(ngModel)]="f_provinces">
+                        <option>Filtra per Provincia</option>
+                        <option *ngFor="let r of provinces" value="{{r.id}}">{{r.name}}</option>
+                    </select>
+                    <select class="form-control" [(ngModel)]="f_cities">
+                        <option>Filtra per Comune</option>
+                        <option *ngFor="let r of cities" value="{{r.id}}">{{r.name}}</option>
+                    </select>
+                    <select class="form-control" [(ngModel)]="f_topics">
+                        <option>Filtra per Tema OC</option>
+                        <option *ngFor="let r of topics" value="{{r.id}}">{{r.name}}</option>
+                    </select>
+                    <div *ngFor="let school of schools">
+                        <input type="checkbox"><label>{{school}}</label>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-2">
+                <h2>Filtri Report</h2>
+                <div>
+                    <div class="col-md-12 checkbox"><label class="optionGroup"><input type="checkbox" value="1">Report 1</label></div>
+                    <div class="col-md-12 checkbox"><label class="optionChild"><input type="checkbox" value="titolo_del_progetto_scelto_su_opencoesione">Titolo del progetto scelto su OpenCoesione</label></div>
+                    <div class="col-md-12 checkbox"><label class="optionChild"><input type="checkbox" value="natura_dellinvestimento_da_opencoesione">Natura dell'investimento da OpenCoesione</label></div>
+                    <div class="col-md-12 checkbox"><label class="optionChild"><input type="checkbox" value="immagine_in_evidenza">Immagine in Evidenza</label></div>
+                    <div class="col-md-12 checkbox"><label class="optionChild"><input type="checkbox" value="foto_del_canvas">Foto del Canvas</label></div>
+                    <div class="col-md-12 checkbox"><label class="optionChild"><input type="checkbox" value="la_ricerca_in_140_caratteri">La ricerca in 140 caratteri</label></div>
+                </div>
+            </div>
+            <div class="col-md-8">
+                <h2>Report filtrati <small class="pull-right">
+                    <button class="btn btn-default" (click)="export">Scarica CSV</button>
+                    <button class="btn btn-default" (click)="shortcode">Copia Shortcode</button>
+                </small></h2>
+                <div *ngIf="data.length == 0">Non sono presenti report con i campi selezionati</div>
+                <div *ngIf="data.length > 0">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Team</th>
+                                <th>La ricerca in 140 caratteri</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let r of data">
+                                <td>{{r.author_name}}</td><td>{{r.raw|ashtml}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div *ngIf="data.length > 0" class="container">
+                    <div (click)="prevPage()" class="btn btn-default">< Prev</div> | <div class="btn btn-default" (click)="nextPage()">Next > </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

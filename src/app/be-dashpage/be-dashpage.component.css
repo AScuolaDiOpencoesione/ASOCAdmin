@@ -1,0 +1,12 @@
+.widget {
+    float:left;
+    position: relative;
+    background-color:#fefefe;
+    overflow:hidden;
+    display:block;
+}
+
+
+.widget.hidden{
+    display: none;
+}

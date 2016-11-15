@@ -1,0 +1,13 @@
+header{
+    text-align: center;
+    padding-top: 20px;
+    font-weight: bold;
+    padding-bottom: 20px;
+}
+
+.js-sidebar-content{
+    border-right-color: #00467d;
+    background-color: #242424;
+    height: 100%;
+}
+

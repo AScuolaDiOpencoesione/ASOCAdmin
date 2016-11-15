@@ -13,7 +13,7 @@ exports.config = {
     'browserName': 'chrome'
   },
   directConnect: true,
-  baseUrl: 'http://localhost:4200/',
+  baseUrl: 'http://asoc-admin-sirmmo.c9users.io/',
   framework: 'jasmine',
   jasmineNodeOpts: {
     showColors: true,

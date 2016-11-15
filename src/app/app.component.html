@@ -1,3 +1,7 @@
-<h1>
-  {{title}}
-</h1>
+<nav navbar (toggleSidebarEvent)="toggleSidebarListener($event)" class="page-controls navbar navbar-dashboard" style="background-color: #242424;border-bottom: 1px solid #a0a0a0;"></nav>
+<nav sidebar id="sidebar" role="navigation" class="sidebar"  [ngStyle]="{'height.px':winheight}"></nav>
+<div class="content-wrap" [ngStyle]="{'height.px':winheight, 'width.px':winwidth}" (window:resize)="onWindowLoadOrResize($event)">
+  <main id="content" class="content view-animate fade-up" role="main">
+      <router-outlet></router-outlet>
+  </main>
+</div>

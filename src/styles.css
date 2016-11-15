@@ -1,1 +1,54 @@
 /* You can add global styles to this file, and also import other style files */
+
+@import 'https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800';
+
+body{
+    background-color: #eee;
+    font-family: 'Open Sans', sans-serif;
+}
+
+header{
+    
+}
+
+.ui-datatable-tablewrapper>table{
+    width:100%;
+}
+
+.ui-datatable-tablewrapper th{
+    padding:3px;
+}
+
+.hidden{
+    display:none;
+}
+
+h5{
+    font-size: 14px;
+    font-weight: 300;
+}
+
+.logo a{
+    color:white;
+}
+
+.sidebar-nav a{
+    line-height: 44px;
+    color: #aaa;
+    padding-left: 50px;
+    text-decoration: none;
+}
+.sidebar-nav>li{
+    border-top: 1px solid #2d2d2d;
+    font-weight: 300;
+    position: relative;
+    display: block;
+    margin-left: -74px;
+}
+.sidebar-nav>li:hover {
+    background-color: #111;
+}
+
+.content-wrap{
+    min-width: 800px;
+}

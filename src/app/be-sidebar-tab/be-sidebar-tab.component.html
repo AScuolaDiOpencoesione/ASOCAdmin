@@ -1,0 +1,32 @@
+<a *ngIf="tab.tabtype == 'admin'" class="collapsed" data-target="#{{tab.id}}" data-toggle="collapse" data-parent="#sidebar" (click)="toggleContent($event,tab.id)">
+    <span class="icon">
+        <i class="fa fa-fw fa-{{tab.icon}}"></i>
+    </span>
+    {{tab.name}}
+    <i class="toggle fa fa-fw fa-chevron-down"></i>
+</a>
+<ul *ngIf="tab.tabtype == 'admin'" id="{{tab.id}}" [ngClass]="{collapse:!open}">
+    <li *ngIf="tab.list_mode == 'table'"><a href="#/{{tab.datasource}}/">Lista {{tab.name}}</a></li>
+    <li *ngIf="tab.list_mode == 'cards'"><a href="#/{{tab.datasource}}/">Schede {{tab.name}}</a></li>
+    <li *ngIf="tab.list_mode == 'calendar'"><a href="#/{{tab.datasource}}/">Calendario {{tab.name}}</a></li>
+    <li><a href="#/{{tab.datasource}}/new">Aggiungi {{tab.name}}</a></li>
+</ul>
+
+<a *ngIf="tab.tabtype == 'custom'" href="#/{{tab.id}}" class="collapsed" data-parent="#sidebar">
+    {{tab.name}}
+</a>
+
+<a *ngIf="tab.tabtype == 'component'" href="#/{{tab.id}}" class="collapsed" data-parent="#sidebar">
+    {{tab.name}}
+</a>
+
+<a *ngIf="tab.tabtype == 'report'" class="collapsed" data-target="#{{tab.id}}" data-toggle="collapse" data-parent="#sidebar" (click)="toggleContent($event,tab.id)">
+    <span class="icon">
+        <i class="fa fa-fw fa-{{tab.icon}}"></i>
+    </span>
+    {{tab.name}}
+    <i class="toggle fa fa-fw fa-chevron-down"></i>
+</a>
+<ul *ngIf="tab.tabtype == 'report'" id="{{tab.id}}" [ngClass]="{collapse:!open}">
+    <li *ngFor="let r of tab.reports"><a href="#/{{tab.datasource}}/{{r.id}}">{{r.name}}</a></li>
+</ul>

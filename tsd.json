@@ -1,0 +1,18 @@
+{
+  "version": "v4",
+  "repo": "borisyankov/DefinitelyTyped",
+  "ref": "master",
+  "path": "typings",
+  "bundle": "typings/tsd.d.ts",
+  "installed": {
+    "geojson/geojson.d.ts": {
+      "commit": "36d40a63a05b5cb3413737fbdf7c9a2a26f211fd"
+    },
+    "leaflet/leaflet.d.ts": {
+      "commit": "36d40a63a05b5cb3413737fbdf7c9a2a26f211fd"
+    },
+    "jquery/jquery.d.ts": {
+      "commit": "7c9f3114a756f052ca10caba615540d7b5eb19be"
+    }
+  }
+}

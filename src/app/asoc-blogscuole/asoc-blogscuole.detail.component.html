@@ -1,0 +1,36 @@
+<div class="container">
+    <div class="row">
+        <div class="blog col-md-8">
+            <div class="row">
+                <div class="col-md-12"><h4>I Report</h4></div>
+                <div class="col-md-3 col-lg-4 col-xs-12" *ngFor="let r of reports">
+                    <div class="card">
+                      <div class="card-block">
+                        <h4 class="card-title">{{r.id}}</h4>
+                      </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div *ngIf="ts?.details" class="blog_sidebar col-md-4">
+            <div class="row">
+                <div class="col-md-12"><h4>Profilo Team</h4></div>
+                <center>
+                        <img class="img" src="{{ts.details.logo}}" >
+                        <h2>{{ts.details.name}}</h2>
+                        <div class="school_name">{{ts.school.name}}</div>
+                        <div class="school_name">{{ts.school.city}} <span *ngIf="ts.school.prov">({{ts.school.prov?.lit}})</span></div>
+                        <hr>
+                        <div>Progetto OpenCoesione: <a href="{{ts.details.oc_proj_url}}" target="_blank"><i class="fa fa-fw fa-world"></i>{{ts.details.oc_proj_name}}</a></div>
+                        <div title="Tutte le scuole con tema {{ts.application.topic[0]?.name}}"><a href="?tema={{ts.application.topic[0]?.id}}"><i class="fa fa-fw fa-tag"></i>{{ts.application.topic[0]?.name}}</a></div>
+                        <hr>
+                        <div><i class="fa fa-fw fa-building"></i><span *ngFor="let a of ts.support_edics">{{a.name}}</span></div>
+                        <div><i class="fa fa-fw fa-users"></i><span *ngFor="let a of ts.support_associations">{{a.name}}</span></div>
+                        <hr>
+                        <div><i class="fa fa-fw fa-twitter"></i><a href="https://twitter.com/{{ts.details.twitter}}">https://twitter.com/{{ts.details.twitter}}</a></div>
+                        <div><i class="fa fa-fw "></i><a href="{{ts.details.url}}">{{ts.details.url}}</a></div>
+                    </center>
+            </div>
+        </div>
+    </div>
+</div>

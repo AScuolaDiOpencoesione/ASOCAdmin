@@ -1,0 +1,71 @@
+import { Component, Input } from '@angular/core';
+import { IDRFService } from '../drf.service';
+import {DRFServiceSetter, DRFServiceComponent} from './drf.component';
+import {DRFNewComponent } from './new.component';
+import { ActivatedRoute, Router } from '@angular/router';
+import { BackendManagerService } from '../backend-manager.service';
+
+
+@Component({
+  templateUrl:"./form.component.html",
+  providers:[BackendManagerService]
+})
+export class DRFEditComponent extends DRFNewComponent{
+  @Input() id;
+
+  constructor(private bms:BackendManagerService, private route: ActivatedRoute){
+    super(bms, route);
+    this.config = this.route.snapshot.data;
+    this.setRoute(this.route);
+    this.setService(bms.setActiveSpace(this.config.dataspace).setActiveApp(this.config.datasource));
+  }
+
+
+  public item:any;
+  
+  get(id:number){
+    this._service.getOne(id).then(
+        item => this.item = item
+    );
+  }
+
+  prepare(){
+    this.getFields();
+    this.get(this.id);
+  }
+  
+  
+getBaseFields(){
+  return {"id":this.id};
+}
+
+
+save(item:any){
+  this.standby();
+      this._service.updateOne(item)
+                   .then(x => {this.postSave(x); this.ready();})
+                   .catch(err => {this.handle_error(err); this.ready();});
+  }
+  
+  ngOnInit(){
+    this.sub = this._route.params.subscribe(params => {
+      let id = +params['id']; // (+) converts string 'id' to a number
+      this.id = id;
+    });
+  }
+  
+  
+  fillOut(){
+    console.log(this.item);
+    for(let n of Object.keys(this.item)){
+      let x = $("[name="+n+"]");
+      if (["radio","checkbox"].indexOf(x[0].getAttribute("type")) >= 0 ){
+        x = $("[name="+n+"][value="+this.item[n]+"]");
+        x[0].setAttribute("checked","checked");
+      }
+      else
+      x.val(this.item[n]);
+    }
+  }
+
+}

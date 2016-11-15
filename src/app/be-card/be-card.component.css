@@ -1,0 +1,10 @@
+.widget-icon{
+    font-size:42px;
+    opacity: .5;
+}
+
+.widget-body{
+    margin:20px;
+    
+    color:white;
+}

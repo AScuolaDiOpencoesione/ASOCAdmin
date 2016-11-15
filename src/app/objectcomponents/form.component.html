@@ -1,0 +1,71 @@
+<div class="add-form">
+    <h1 id="{{name}}">{{description}}</h1>
+    <form class="col-md-11 col-md-offset-1" style="margin-top:20px;">
+        <div class="form-group" [ngClass]="{visible:isItemVisible(item), hidden:!isItemVisible(item), 'has-error':errormsg(item.name)}" *ngFor="let item of fields;let idx=index" >
+            <div class="hidden">{{item|json}}</div>
+            
+            <input type="hidden" *ngIf="item.value != null" name="{{item.name}}" value="{{item.value}}">
+            
+            <div class="row" *ngIf="item.type == 'multiple choice'">
+                <div class="col-md-6 col-md-offset-2 help-block" [innerHtml]="item.help_text"></div>
+            </div>
+
+            <div class="row" *ngIf="item.value == null">
+                <label class="form-label col-md-2" >
+                    <span *ngIf="item.index != ''">{{item.index}}.</span>
+                    <span [innerHtml]="item.label"></span>
+                    <span *ngIf="item.required">*</span> 
+                </label>
+                <div class="col-md-6">
+                    <input *ngIf="item.type == 'string' && item.long_text == false" class="form-control" [required]="item.required" formnovalidate (change)="watchDependents($event, item.name)" type="text" name="{{item.name}}">
+                    <textarea *ngIf="(item.type == 'string' || item.type=='str') && item.long_text == true" class="form-control" [required]="item.required" formnovalidate (change)="watchDependents($event, item.name)" type="text" name="{{item.name}}"></textarea>
+                    <input *ngIf="item.type == 'integer'" class="form-control" type="text" name="{{item.name}}" [required]="item.required" formnovalidate (change)="watchDependents($event, item.name)">
+                    <input *ngIf="item.type == 'float'" class="form-control" type="text" name="{{item.name}}" [required]="item.required" formnovalidate (change)="watchDependents($event, item.name)">
+                    <input *ngIf="item.type == 'date'" class="form-control" type="date" name="{{item.name}}" [required]="item.required" formnovalidate (change)="watchDependents($event, item.name)">
+                    <input *ngIf="item.type == 'email'" class="form-control" type="email" name="{{item.name}}" [required]="item.required" formnovalidate (change)="watchDependents($event, item.name)">
+                    <input *ngIf="item.type == 'file upload'" class="form-control" type="file" name="{{item.name}}" [required]="item.required" formnovalidate (change)="loadFile($event, item.name)">
+                    <div *ngIf="item.type == 'boolean'">
+                        <p class="col-md-9 help-block" [innerHtml]="item.help_text"></p>
+                        <div class="col-md-3">
+                            <div class="radio">
+                            <label class="col-md-6 ">
+                                <input type="radio" value="true" (change)="watchDependents($event, item.name)" name="{{item.name}}">SI
+                            </label>
+                            </div>
+                            <div class="radio">
+                            <label class="col-md-6">
+                                <input type="radio"  checked value="false" (change)="watchDependents($event, item.name)" name="{{item.name}}">NO
+                            </label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <select *ngIf="item.type == 'choice'"  class="form-control" formnovalidate [required]="item.required" (change)="watchDependents($event, item.name)" name="{{item.name}}">
+                        <option value="">--- Seleziona una delle opzioni ---</option>
+                        <option *ngFor="let c of item.choices" [ngClass]="{visible:isOptionVisible(item.name, c.value, c.additionals), hidden:!isOptionVisible(item.name, c.value, c.additionals)}" value="{{c.value}}">{{c.display_name}}</option> 
+                    </select>
+                    <div *ngIf="item.type == 'multiple choice'" >
+                        <div *ngFor="let c of item.choices"> <input type="checkbox" formnovalidate data-on="Si" data-off="No" data-onstyle="success" (change)="watchDependents($event, item.name); setSelected($event, item.name)" data-offstyle="danger" name="{{item.name}}" value="{{c.value}}"> <span [innerHtml]="c.display_name"> </span></div> 
+                    </div>
+                    <input *ngIf="item.type == 'money'" type="text" class="form-control">
+                </div>
+            </div>
+            <div class="row" *ngIf="item.type != 'boolean' && item.type != 'multiple choice'">
+                <div class="col-md-6 col-md-offset-2 help-block" [innerHtml]="item.help_text"></div>
+            </div>
+            <div class="row" *ngIf="item.number != ''"><hr class="col-md-8"></div>
+        </div>
+        <!-- Sections wrapper -->
+        <div *ngIf="hasSections()">
+            <div [ngClass]="{visible:isVisible(sec), hidden:!isVisible(sec)}" *ngFor="let sec of sectionKeys()">
+                <button (click)="setActive(prevSection(sec))" *ngIf="sectionIndex(sec)>0" class="btn btn-info"><i class="fa fa-fw fa-chevron-left"></i> Indietro</button>   
+                <button (click)="setActive(nextSection(sec))" *ngIf="!sectionLast(sec)" class="btn btn-info">Avanti <i class="fa fa-fw fa-chevron-right"></i></button>   
+                <button *ngIf="sectionLast(sec)" (click)="submitData($event)" class="btn btn-success"><i class="fa fa-fw fa-save"></i> Salva e invia</button>    
+            </div>
+        </div>
+        <!-- Sections wrapper -->
+        <div *ngIf="!hasSections()">
+                <button (click)="submitData($event)" class="btn btn-success"><i class="fa fa-fw fa-save"></i> Salva e invia</button>    
+        </div>       
+    </form>
+</div>
