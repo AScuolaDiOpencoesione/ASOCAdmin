@@ -68,6 +68,8 @@ export class AsocReportComponent implements OnInit {
   private schools:any[] = [];
   private topics:any[] = [];
   
+  private forms = [];
+  
   private f_regions:any[] = [];
   private f_provinces:any[] = [];
   private f_sections:any[] = [];
@@ -105,7 +107,7 @@ export class AsocReportComponent implements OnInit {
       this.topics=x;
     });
     this.bms.setActiveSpace("").setActiveApp("meta/asocform").getAll().then(x=>{
-      this.sections=x;
+      this.forms=x;
     });
     this.getData();
   }

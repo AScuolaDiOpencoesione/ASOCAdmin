@@ -25,19 +25,15 @@
                         <option *ngFor="let r of topics" value="{{r.id}}">{{r.name}}</option>
                     </select>
                     <div *ngFor="let school of schools">
-                        <input type="checkbox"><label>{{school}}</label>
+                        <input type="checkbox"><label>{{school.name}}</label>
                     </div>
                 </div>
             </div>
             <div class="col-md-2">
                 <h2>Filtri Report</h2>
-                <div>
-                    <div class="col-md-12 checkbox"><label class="optionGroup"><input type="checkbox" value="1">Report 1</label></div>
-                    <div class="col-md-12 checkbox"><label class="optionChild"><input type="checkbox" value="titolo_del_progetto_scelto_su_opencoesione">Titolo del progetto scelto su OpenCoesione</label></div>
-                    <div class="col-md-12 checkbox"><label class="optionChild"><input type="checkbox" value="natura_dellinvestimento_da_opencoesione">Natura dell'investimento da OpenCoesione</label></div>
-                    <div class="col-md-12 checkbox"><label class="optionChild"><input type="checkbox" value="immagine_in_evidenza">Immagine in Evidenza</label></div>
-                    <div class="col-md-12 checkbox"><label class="optionChild"><input type="checkbox" value="foto_del_canvas">Foto del Canvas</label></div>
-                    <div class="col-md-12 checkbox"><label class="optionChild"><input type="checkbox" value="la_ricerca_in_140_caratteri">La ricerca in 140 caratteri</label></div>
+                <div *ngFor="let form of forms">
+                    <div class="col-md-12 checkbox"><label class="optionGroup"><input type="checkbox" value="1">{{form.name}}</label></div>
+                    <div *ngFor="let field of form.fields" class="col-md-12 checkbox"><label class="optionChild"><input type="checkbox" value="{{field.name}}">{{field.label}}</label></div>
                 </div>
             </div>
             <div class="col-md-8">
